@@ -1,0 +1,46 @@
+name: Update Citation Data
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'  # 每天UTC时间8:00运行
+  workflow_dispatch:      # 允许手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3  # 检出仓库代码
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install scholarly
+        run: pip install scholarly requests
+
+      - name: Run Scholar crawler with SerpAPI
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+        run: |
+          cd google_scholar_crawler  # 进入子目录
+          python update_scholar.py    # 执行脚本
+          cd ..                      # 返回根目录
+          
+      - name: Update citations in publications
+        run: |
+          cd google_scholar_crawler  
+          python update_html_citations.py  
+          cd ..    
+          
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add -f google_scholar_crawler/results/*  # 强制添加
+          git add -f _pages/includes/publications.md
+          git commit -m "Update citation data" || echo "No changes to commit"
+          git push
