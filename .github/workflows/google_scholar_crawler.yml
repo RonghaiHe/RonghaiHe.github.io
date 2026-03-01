@@ -41,6 +41,6 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add -f google_scholar_crawler/results/*  # 强制添加
-          git add -f _pages/includes/publications.md
+          git add -f index.html
           git commit -m "Update citation data" || echo "No changes to commit"
           git push
