@@ -14,7 +14,7 @@
   "interests": [],
   "email_domain": "@my.cityu.edu.hk",
   "homepage": "https://ronghaihe.github.io/",
-  "citedby": 16,
+  "citedby": 18,
   "publications": [
     {
       "container_type": "Publication",
@@ -26,14 +26,14 @@
       },
       "filled": false,
       "author_pub_id": "9F_Gj1sAAAAJ:9yKSN-GCB0IC",
-      "num_citations": 16,
+      "num_citations": 18,
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=14635447479121472506",
       "cites_id": [
         "14635447479121472506"
       ]
     }
   ],
-  "citedby5y": 16,
+  "citedby5y": 18,
   "hindex": 1,
   "hindex5y": 1,
   "i10index": 1,
@@ -41,6 +41,6 @@
   "cites_per_year": {
     "2024": 3,
     "2025": 7,
-    "2026": 6
+    "2026": 8
   }
 }
